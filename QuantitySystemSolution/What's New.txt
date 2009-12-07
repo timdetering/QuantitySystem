@@ -1,0 +1,464 @@
+[Qs 1.1.9.8]
+- fixed casing error in when otherwise  statement
+
+- fixed an exception of accessing delegate property in MONO
+    replaced the call to property into a function call.
+    
+- Enhancing passing arguments to functions
+    frankly fixed f(a) = Windows:MessageBox(a) 
+    that resulted in displaying a when f(hello)
+    now it shows hello :)
+    
+- [MassFlowRate] Quantity Added.
+
+- Comparing Scalars with vectors is calculated based on Magnitude of the vectors.
+- Comparing Vector with Vector also rely on the magnitude of vectors.
+    
+        
+    
+[Qs 1.1.9.7]
+- Added Relational Operators in QuantitySystem Framework
+- Added the when-othwerwise statement to evaluate conditions
+
+  sgn(x) = -1 when x<0 otherwise 0 when x==0 otherwise 1
+  
+  [Success Expression] when [Test Expression] otherwise [Fail Expression]
+  
+  
+  This is a great new feature in making conditions and it is pure function flavor in a new syntactic form.
+  
+  
+- Planning The next major release will be 1.2  version which will hold all things together
+   but after testing and making sure that there are no errors.
+  
+
+[Qs 1.1.9.5]
+- Fixed namespace:variable  =  expression   assignation problem
+- fast checking in function and sequence parsing to ignore the extra un-needed processing.
+
+[Qs 1.1.9.4]
+- Namespace support to sequence has been added.
+
+[Qs 1.1.9.3]
+- Modulus operator '%' added to the framework and supported into Qs
+- Function overloading by parameter names:
+	so you can define the same function name with different parameter names
+	Qs> f(x) = x^2
+	Qs> f(y) = y^2
+	Qs> f(x,y) = x+y
+	Qs> f(u,v) = u - v
+	
+	
+	f(3)  call the default function
+	f(y:=4) call the function that have its parameter name y
+	
+	The first declared function is the default function that will be called when you don't specify 
+	named arguments when calling the function.
+	
+	when selecting named argument in calling the function the qs will try to map the desired function.
+	
+	NOTE: Passing functions as arguments deals only with the default function declaration.
+	
+- refactoring a great deal into the QsNamespace
+   the QsNamespace is for providing functions variables from user defined and hardcoded in c#.
+   
+   
+
+
+[Qs 1.1.9.2]
+- Named argument in functions added.  f(y := 2, x := 3)
+- Support to the DLR 0.92 by including the new references that released in 22 October {they changed a lot of things}
+- Renamed [Pressure] to [Stress] and [Velocity] to [Speed].
+- Added Environment:TickCount Property  it is in milli second.
+
+
+[Qs 1.1.9.1]
+- Setting Seuquence negative index bug (FIXED)
+- Sequence range from bigger to smaller number (FIXED)
+- Getting Summation , Multiplication , or Average from Bigger to Smaller number in sequence (FIXED)
+- You can suppress the output by adding semi-colon ; at the end of the expression.
+
+[Qs 1.1.9.0]
+- all variables and namespaces with their functions or variables are CASE INSENSITIVE.
+
+
+[Quantity System 1.1.8.3] 
+- Namespace capabilities
+   Namespace can be added to variables and functions.
+	so this is a valid form
+	
+		x:r = 10
+		x:g(x) = x/2
+		b=g(x:r)
+		
+		
+- Calling functions written in C#
+  Namespace is mapped to Static Class in C#
+  the root of Qs namespaces is [Qs.Modules]  you should add your classes here.
+  
+  and Public properties will serve as qs namespace variables
+  public functions will server as the qs namespace functions
+  
+  the return values whould be QsValue.
+  and function parameters are QsParameter.
+  
+- I included QsStudio.dll as extension module 
+  this library is not completed however you can try this :)
+  
+  Qs> Music:Play(c d e f g a b c>)     #Play major scale on Do  
+  Qs> Music:SaveMidi(c d e f g a b c>, tt.mid)
+  Qs> Music:PlayMidi(tt.mid)
+  Qs> Music:PlayMidi(RaisingFight.mid)   #included in the 
+  
+  
+   
+
+[Quantity System 1.1.8.2] (Released)
+- Now Matrix operators
+  '*'  for ordinary matrix multiplication
+  '^'  power of ordinary matrix multiplication
+  '.'  for matrix elements multiplication
+  '^.' for matrix elements power.
+
+  please let me know if you have further ideas about this arrangement.  
+  
+- The first manual for the program and also specifications.
+  
+[Quantity System 1.1.8.1] 
+- Metric prefixes overflow fix
+  when you form a unit <ms.s> milli second * second 
+  the result is <s^2>  and an overflow occur due to the milli prefix
+  this milli factor goes to the value part
+  so if you entered 2<ms.s> the result will be 0.002<s^2>
+  
+  however the framework is always try to get the best expression it can have.
+  for example if you make 2<Gm.mm> giga Metre * milli Metre the result will be 2<km^2>
+  
+  but if there were no corresponding prefix for the overflow then the prefix is removed 
+  and overflow flag in the unit is raised, and the quantity value is altered as shown 
+  in the first example.
+
+- Still I am confused about matrix multiplication operators.
+	now * operator makes array multiplication for matrix
+	and . dot operator make the ordinary matrix multiplication.
+	
+	this is due to in calling function or sequences 
+	the * operator is used and the makes the calculation of QsValue go through all elements
+	I find it usefull frankly
+	
+NOTE:	my brain is distracted and I can't make correct judgment :(
+  
+  
+[Quantity System 1.1.8] 
+
+Code Design Change in Qs DLR:
+-----------------------------
+
+now there is a QsScalar class that wrap the AnyQuantity<double> class
+QsScalar is inherited from QsValue
+Three Classes inherited from QsValue
+
+ 1) QsScalar  
+ 2) QsVector
+ 3) QsMatrix
+ 
+ 
+Later the Qs will also support Tensor with rank 3 {any suggestions is appreciated}
+
+please notice that the matrix calculations is not the best algorithm available.
+
+
+New features:
+-------------
+
+- Absolute Operator   |n|  where n is QsScalar or QsMatrix
+
+- Vector support:
+	  a= {2 3 4}  or a={2,3,5}
+	  
+- Dot product for vectors   New opertaor
+	  {2,3,4} . { 5 6 3}
+	  
+- Crosss product for vectors of 3 components  use 'x' letter       New Operator
+	  {3<m> 2<A> 4<N>} x {2<ft> 2<mA> 3<pdl>}
+	  
+- Vector Norm ||_||:
+	    ||{3 5 3 2 1}|| or  ||a||
+
+- Factorial of Vector gets all the factorial of its components
+
+- calling a function with vector as input result in vector as a result.
+  
+
+- Matrix support 
+	m1 = [2 3 4; 3 2 1; {5 4 3}]
+	
+- Matrix multiplication
+
+- Determinant for matrix using determinant operator
+	| a | 
+	| [ 2 3 4; 3 2 1; 5 2 3] |
+	only for 2x2 and 3x3 matrices.
+	LU decomposition methods comes later.
+	
+- Sequence new range operator '..' i.e. 's[n..m]':
+   returns vector if elements are scalars.
+   returns matrix if elements are vectors.	
+
+- Enhancments in parsing and exceptions handling.
+
+New Quantities:
+---------------
+
+- Stiffness						<N/m>
+- RotationalStiffness			Torque / Angle
+- Momentum						Mass * Velocity
+- MassMomentOfInteria			I   <kg.m!^2>   like the regular mass
+- AngularMomentum				Mass Moment Of Interia * Angular Velocity
+
+New Units:
+----------
+- Cubit <cubit>					Ancient Length unit = 45.72<cm> based on google calculator.
+
+
+[Quantity System 1.1.7] {Release}
+----------------------------------
+
+- Passing Functions as arguments.
+  
+- Optimization for parameterless sequqnece  {actually I am only caching elements  especially for fibonaccy like sequences}
+     however sequence still need another optimizations.
+     
+- Run [filename] in console load the content file into the current session and execute its contents (usefull if you had coded previous functions or sequences before)
+
+
+                                          
+[Quantity System 1.1.6]
+- Sequence concept added. in Qs ver 1.1.6
+
+
+[Quantity System Framework 1.1.4] {Releases}
+- Moved Exception handling from Qs layer to Console layer  so that dynamically calling for Qs will see the real exceptions.
+
+- Fixed the Factorial for the thousand TIME :( I don't know why the function is always trick me and goes WRONG :D I must be slept or something.
+   3<m>! = 6<m^3>  
+   3.5<m>! = 11.6317283996629 <m^3.5>
+   you can notice that factorial is accepting real positive numbers with units also :)
+   this is what you should expect from treating variables as quantities.
+   
+- I think there are no caching errors however if any one find conversion error please revert back to release 1.1
+
+- Not related to the program (I finished preliminary master exams today :) ) 2009-07-20  
+    4 days to enter my fourth decade, 4 days and I will celebrate my 30 birthday day ;)  wish me luck.
+    
+
+[Quantity System Framework 1.1.3]
+- Now Factorial is also available for real numbers
+- Fixed serious caching error in units conversion
+
+New Units
+---------
+- Gravitional System namespace under metric added three new units  (finally I figured out what it is really mean :) )
+- <hyl> for mass
+- <p>  small letter for Pond unit  which equal <gf> Gramforce  added also
+
+- <grain> renamed to <gr>  Grain unit
+- Poundal unit <pdl> added = <lbm.ft/s^2>
+
+
+
+[Quantity System Framework 1.1.2]
+
+- [Specific Weight] quantity added
+- optimization for unit conversions  (caching added for already calculated unit conversions)
+
+- enahcing Qs hosting to be used dynamically inside any .NET applications using DLR hosting APIs.
+	to create the run time: 
+            var QsScope = sr.ExecuteFile("test.qs");            
+            var QsEngine = sr.GetEngine("Qs");
+            var a = QsEngine.Execute("a=5<m>", QsScope) as AnyQuantity<double>;
+		
+- factorial optimized. {I am still searching how to make factorial for real numbers}
+
+[Quantity System Framework 1.1.1]
+
+- Whole optimization for the library. in all 4 basic operations
+- Parsing optmization in the DLR part.
+- factorial operator added '!' {calculation only occur for the integer part}
+
+
+- fixed the exponent in metric units  10<m>+100<are>^0.5  produced error in calculations.
+
+- Volume Flow Rate  quantity added
+- cfm unit added  (cubic feet per minute)
+- gpm unit added 
+
+
+[Quantity System Framework 1.1]  [Released]
+- unit modifier '!'
+	the modifier will modify the lenght units to produce radius length quantities
+	
+	so now you can say a = 10<N.m!>  which will produce Torque
+
+- separation between DLR and quantity system framwork
+
+- functions are called by delegates not hard coded expressions.
+
+- functions can refer to variables declared in global scope 
+	but local parameters with the same name is habing the higher priority	
+
+- Raise to power enhanced 
+	now fractions are included so 1<kg>^0.5 = 1<kg^0.5>
+	also this is a valid operation
+		10<m> + 100<ha>^0.5
+		
+	however you can't generate quantities with fraction values.
+	 only by raising to power.
+
+	
+	
+
+[Quantity System Framework 1.0.9]
+
+*New Features
+	- Power operator has been add  x^2   -- Cautious {you only can raise to dimensionless numbers}
+	- More toward DLR support: the program is entirely run under QsHost which subclass DLR ConsoleHost
+	- Functions appear for the first time
+		Declaration is normal like ordinary math 
+			Qs> f(x) = x^2+64
+			Qs> f(x,y) = x/y
+		Called
+			Qs> 10 - f(f(40,20))  + 20
+				DimensionlessQuantity: -38 <1>	
+				
+*Fixes
+   - Correct the <1> unit in parsing which affected <1/kg> and all units
+   - Calculating numbers that start with sign - or +   (fixed)  
+			so this is valid  a=-2 ++324--392 +50<m/ft> 
+   - Adding Angle Quantity to Dimensionless Quantities is valid now
+		-----------------------------------------
+		Qs> 1 + 10 <rad>
+			DimensionlessQuantity: 11 <1>
+		Qs> 1 + 10 <deg>
+			DimensionlessQuantity: 1.17453292519943 <1>
+		Qs> 10<deg> + 1
+			Angle: 67.2957795130823 deg
+		Qs> 10<rad> + 1
+			Angle: 11 rad   
+		-------------------------------------------------
+		
+		and with units taken into consideration also.
+
+[Quantity System Framework 1.0.8.1]
+
+- New Quantities
+	Molar Mass       g/mol
+	Heat Capacity    J/K
+- New units
+	lbmol  pound mol
+	
+- made feet = 0.3048 m to adjust nautical mile to be 1852m
+		
+[Quantity System Framework 1.0.8]
+
+- Colors changed :)
+- SpecificVolume Quantity Added
+- Calculations of operators priority fixed and Parrenthesis support added.
+
+[Quantity System Framework 1.0.7]
+
+* New Features
+	- Add support for parsing units with exponent like <cm^2>
+	- Add support for simple mixed units with one '/' division charachter 
+		<kg.m/s^2> gives Force Quantity
+	- The first use the DLR Expressions instead of Linq Expressions 
+		{this is a strategic transfer to support more features in the future}	
+		{also because built in linq expressions make errors in mono under linux :( }
+			
+	
+* New Units
+	-psi  for pound per square inch  for pressure
+	
+* Many Fixes
+	- Fixing of Metric Prefix multiplication and division  (although need testing).
+	- conversion from metric units had an error because exponent wasn't taken in consideration.
+	
+[Quantity System Framework 1.0.6]
+
+* New Quantities
+	- Electric Charge
+	- Electromotive Force
+	- Capacitance
+	- Electric Conductance
+	- Electric Resistance
+	- Magnetic Flux
+	- Magnetic Flux Density
+	- Inductance
+	- Luminous Flux
+	- Illuminance
+	- Catalytic Activity  
+	
+* New Units
+	- Coulomb 'C'
+	- Farad   'F'
+	- Volt    'V'
+	- Siemens  'S'
+	- Ohm      'ohm'
+	- Weber    'Wb'
+	- Teslq    'T'
+	- Henry    'H'
+	- Lumen    'lm'
+	- Lux      'lx'
+	- Katal    'kat'  => mol/s
+	
+	
+	* Astronomical Units:
+		-	AstronomicalUnit symbol changed from 'AU' to 'au'
+		-   Light Year Length added                      'ly'
+		-   Parsec unit  length                          'pc'  with metric support
+		-   Solar Mass unit                              'Mo'
+		-   Julian Year unit							 'a'
+		
+		
+	
+	-Are unit of area       symnol changed from 'a' to 'are'
+	
+	-u unified mass of atom  added 'u' = 'Da'
+	-Dalton transfered to Natural Units
+	
+	* Shared Unit System added 
+		The shared system contains units that exists in all unit systems
+		-Second 's'  transfered to Shared unit system 
+		
+	* Misc Unit System added
+		the system is for units that don't have exact unit system and needs to be there untill we know its unit systems
+
+		+ Angle units
+			- Arc Degree unit added  'deg'  ==>this is simple the angle degrees
+			- Arc Minute unit        'arcmin'
+			- Arc Second unit        'arcsec'
+			- Milli Arc Second       'mas'
+			- Gradian  unit          'grad'
+			- Revolution  unit       'r'   whole one cycle = 360<deg>
+			
+		- Angstrom Transfered to Misc namespace
+		
+		+ Time units
+			- Minute unit            'min'
+			- Hour   unit            'h'
+			- Day    unit            'd'	
+		
+		+ Volume units
+			- Cubit Centimetre       'cc'	
+	
+	
+	
+* Units Logic
+	Two ways in defining Quantity System of Units
+		a) Make a default unit and others to reference it.
+		b) Make all units reference SI units directly.	
+	Either ways are acceptable but not mixed or a conversion errors occur {please refer to the code}
+	
+	Note: units symbols are unique and case sensitive
+	
+	

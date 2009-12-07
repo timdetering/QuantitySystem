@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{78909C0B-AA53-48F9-8AC9-F3937383629C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QuantitySystem</RootNamespace>
+    <AssemblyName>QuantitySystem</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>QuantitySystem.snk</AssemblyOriginatorKeyFile>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkSubset>Client</TargetFrameworkSubset>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DimensionDescriptors\LuminousIntensityDescriptor.cs" />
+    <Compile Include="DimensionDescriptors\AmountOfSubstanceDescriptor.cs" />
+    <Compile Include="DimensionDescriptors\TemperatureDescriptor.cs" />
+    <Compile Include="DimensionDescriptors\ElectricCurrentDescriptor.cs" />
+    <Compile Include="DimensionDescriptors\TimeDescriptor.cs" />
+    <Compile Include="DimensionDescriptors\MassDescriptor.cs" />
+    <Compile Include="DimensionDescriptors\LengthDescriptor.cs" />
+    <Compile Include="DimensionNotFoundException.cs" />
+    <Compile Include="DimensionDescriptors\IDimensionDescriptor.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="QuantitiesNotDimensionallyEqualException.cs" />
+    <Compile Include="Quantities\AngularAcceleration.cs" />
+    <Compile Include="Quantities\AngularMomentum.cs" />
+    <Compile Include="Quantities\AngularVelocity.cs" />
+    <Compile Include="Quantities\BaseQuantities\AmountOfSubstance.cs" />
+    <Compile Include="Quantities\BaseQuantities\AnyQuantity_Operations.cs" />
+    <Compile Include="Quantities\Capacitance.cs" />
+    <Compile Include="Quantities\CatalyticActivity.cs" />
+    <Compile Include="Quantities\DimensionlessQuantities\Angle.cs" />
+    <Compile Include="Quantities\BaseQuantities\AnyQuantity.cs" />
+    <Compile Include="Quantities\BaseQuantities\BaseQuantity.cs" />
+    <Compile Include="Quantities\BaseQuantities\ElectricalCurrent.cs" />
+    <Compile Include="Quantities\BaseQuantities\LuminousIntensity.cs" />
+    <Compile Include="Quantities\BaseQuantities\Length.cs" />
+    <Compile Include="Quantities\BaseQuantities\Mass.cs" />
+    <Compile Include="Quantities\BaseQuantities\Temperature.cs" />
+    <Compile Include="Quantities\BaseQuantities\Time.cs" />
+    <Compile Include="Quantities\Density.cs" />
+    <Compile Include="Quantities\DerivedQuantity.cs" />
+    <Compile Include="Quantities\Acceleration.cs" />
+    <Compile Include="Quantities\Area.cs" />
+    <Compile Include="Quantities\DimensionlessQuantities\SolidAngle.cs" />
+    <Compile Include="Quantities\ElectricCharge.cs" />
+    <Compile Include="Quantities\ElectricConductance.cs" />
+    <Compile Include="Quantities\ElectricResistance.cs" />
+    <Compile Include="Quantities\ElectromotiveForce.cs" />
+    <Compile Include="Quantities\Force.cs" />
+    <Compile Include="Quantities\DimensionlessQuantities\DimensionlessQuantity.cs" />
+    <Compile Include="Quantities\Frequency.cs" />
+    <Compile Include="Quantities\HeatCapacity.cs" />
+    <Compile Include="Quantities\Illuminance.cs" />
+    <Compile Include="Quantities\Inductance.cs" />
+    <Compile Include="Quantities\KinematicViscosity.cs" />
+    <Compile Include="Quantities\LuminousFlux.cs" />
+    <Compile Include="Quantities\MagneticFlux.cs" />
+    <Compile Include="Quantities\MagneticFluxDensity.cs" />
+    <Compile Include="Quantities\MassFlowRate.cs" />
+    <Compile Include="Quantities\MassMomentOfInertia.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Quantities\MolarMass.cs" />
+    <Compile Include="Quantities\Momentum.cs" />
+    <Compile Include="Quantities\Power.cs" />
+    <Compile Include="Quantities\Pressure.cs" />
+    <Compile Include="Quantities\RadiantIntensity.cs" />
+    <Compile Include="Quantities\RotationalStiffness.cs" />
+    <Compile Include="Quantities\SpecificHeat.cs" />
+    <Compile Include="Quantities\SpecificVolume.cs" />
+    <Compile Include="Quantities\SpecificWeight.cs" />
+    <Compile Include="Quantities\Stiffness.cs" />
+    <Compile Include="Quantities\Torque.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Quantities\Velocity.cs" />
+    <Compile Include="Quantities\Viscosity.cs" />
+    <Compile Include="Quantities\Volume.cs" />
+    <Compile Include="Quantities\Energy.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quantities\VolumeFlowRate.cs" />
+    <Compile Include="QuantityDimension.cs" />
+    <Compile Include="QuantityException.cs" />
+    <Compile Include="QuantityNotFoundException.cs" />
+    <Compile Include="Units\Ancient\LengthUnits.cs" />
+    <Compile Include="Units\Astronomical\EnergyUnits.cs" />
+    <Compile Include="Units\Astronomical\LengthUnits.cs" />
+    <Compile Include="Units\Astronomical\MassUnits.cs" />
+    <Compile Include="Units\Astronomical\TimeUnits.cs" />
+    <Compile Include="Units\English\AreaUnits.cs" />
+    <Compile Include="Units\English\VolumeFlowRateUnits.cs" />
+    <Compile Include="Units\English\PoundMole.cs" />
+    <Compile Include="Units\English\PowerUnits.cs" />
+    <Compile Include="Units\English\EnergyUnits.cs" />
+    <Compile Include="Units\English\ForceUnits.cs" />
+    <Compile Include="Units\English\PressureUnits.cs" />
+    <Compile Include="Units\English\Rankine.cs" />
+    <Compile Include="Units\English\VelocityUnits.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Units\English\LengthUnits.cs" />
+    <Compile Include="Units\English\MassUnits.cs" />
+    <Compile Include="Units\English\US\AreaUnits.cs" />
+    <Compile Include="Units\English\Imperial\AreaUnits.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Units\English\Imperial\LengthUnits.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Units\English\Imperial\MassUnits.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Units\English\Imperial\VolumeUnits.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Units\English\US\LengthUnits.cs" />
+    <Compile Include="Units\English\US\MassUnits.cs" />
+    <Compile Include="Units\English\US\VelocityUnits.cs" />
+    <Compile Include="Units\English\US\VolumeUnits.cs" />
+    <Compile Include="Units\English\VolumeUnits.cs" />
+    <Compile Include="Units\MetricUnit_Helper.cs" />
+    <Compile Include="Units\Metric\AreaUnits.cs" />
+    <Compile Include="Units\Metric\Celsius.cs" />
+    <Compile Include="Units\Metric\Cgs\EnergyUnits.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Units\Metric\Cgs\ForceUnits.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Units\Metric\Cgs\KinematicViscosityUnits.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Units\Metric\Cgs\PressureUnits.cs" />
+    <Compile Include="Units\Metric\Cgs\ViscosityUnits.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Units\Metric\Gravitational\ForceUnits.cs" />
+    <Compile Include="Units\Metric\Gravitational\MassUnits.cs" />
+    <Compile Include="Units\Metric\Mts\ForceUnits.cs" />
+    <Compile Include="Units\Metric\Mts\MassUnits.cs" />
+    <Compile Include="Units\Metric\Mts\PressureUnits.cs" />
+    <Compile Include="Units\Metric\Mts\VolumeUnits.cs" />
+    <Compile Include="Units\Metric\SI\BaseUnits\Ampere.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Units\Metric\SI\BaseUnits\Candela.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Units\Metric\SI\BaseUnits\Gram.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Units\Metric\SI\BaseUnits\Kelvin.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Units\Metric\SI\BaseUnits\Metre.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Units\Metric\SI\BaseUnits\Mole.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Units\Metric\SI\Coulomb.cs" />
+    <Compile Include="Units\Misc\VolumeUnits.cs" />
+    <Compile Include="Units\Metric\SI\Farad.cs" />
+    <Compile Include="Units\Metric\SI\Henry.cs" />
+    <Compile Include="Units\Metric\SI\Katal.cs" />
+    <Compile Include="Units\Metric\SI\Lumen.cs" />
+    <Compile Include="Units\Metric\SI\Lux.cs" />
+    <Compile Include="Units\Metric\SI\Ohm.cs" />
+    <Compile Include="Units\Metric\SI\Siemens.cs" />
+    <Compile Include="Units\Metric\SI\Steradian.cs" />
+    <Compile Include="Units\Metric\SI\Tesla.cs" />
+    <Compile Include="Units\Metric\SI\Volt.cs" />
+    <Compile Include="Units\Metric\SI\Weber.cs" />
+    <Compile Include="Units\Metric\VolumeUnits.cs" />
+    <Compile Include="Units\Metric\EnergyUnits.cs" />
+    <Compile Include="Units\Metric\LengthUnits.cs" />
+    <Compile Include="Units\Metric\MassUnits.cs" />
+    <Compile Include="Units\Metric\PressureUnits.cs" />
+    <Compile Include="Units\Metric\VelocityUnits.cs" />
+    <Compile Include="Attributes\DefaultUnitAttribute.cs" />
+    <Compile Include="Attributes\MetricUnitAttribute.cs" />
+    <Compile Include="Attributes\UnitAttribute.cs" />
+    <Compile Include="Attributes\ReferenceUnitAttribute.cs" />
+    <Compile Include="Units\Metric\TimeUnits.cs" />
+    <Compile Include="Units\MetricPrefixes.cs" />
+    <Compile Include="Units\Metric\SI\Hertz.cs" />
+    <Compile Include="Units\Metric\SI\Joule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Units\Metric\SI\Newton.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Units\Metric\SI\Pascal.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Units\Metric\SI\Radian.cs" />
+    <Compile Include="Units\MetricUnit.cs" />
+    <Compile Include="Units\Metric\SI\Watt.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Units\Misc\AngleUnits.cs" />
+    <Compile Include="Units\Misc\AngularVelocityUnits.cs" />
+    <Compile Include="Units\Misc\LengthUnits.cs" />
+    <Compile Include="Units\Misc\TimeUnits.cs" />
+    <Compile Include="Units\Natural\EnergyUnits.cs" />
+    <Compile Include="Units\Natural\MassUnits.cs" />
+    <Compile Include="Units\Natural\VelocityUnits.cs" />
+    <Compile Include="Units\Shared\Second.cs" />
+    <Compile Include="Units\Unit.cs" />
+    <Compile Include="Units\UnitException.cs" />
+    <Compile Include="Units\UnitNotFoundException.cs" />
+    <Compile Include="Units\UnitPath.cs" />
+    <Compile Include="Units\UnitPathItem.cs" />
+    <Compile Include="Units\UnitsNotDimensionallyEqualException.cs" />
+    <Compile Include="Units\MetricPrefix.cs" />
+    <Compile Include="Units\MetricPrefixException.cs" />
+    <Compile Include="Units\Unit_Dynamic.cs" />
+    <Compile Include="Units\Unit_Helper.cs" />
+    <Compile Include="Units\Unit_Operations.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Notes\Dimensions Pattern.txt" />
+    <Content Include="Notes\Lengths Description.txt" />
+    <Content Include="Notes\Metric Units.txt" />
+    <Content Include="Notes\RemarkNotes.txt" />
+    <Content Include="Notes\SIUnit Multiplication.txt" />
+    <Content Include="Notes\Units Conversion.txt" />
+    <Content Include="Notes\Units Ladder.txt" />
+    <Content Include="Notes\Units pattern.txt" />
+    <Content Include="Notes\Units Patterns 2.txt" />
+    <Content Include="Units\Shared\Shared System.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="QuantitySystem.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
